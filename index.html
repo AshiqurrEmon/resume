@@ -1,662 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashiqur Rahman Emon — VAPT Specialist</title>
+  <meta name="description" content="Ethical Hacker, Bug Bounty Hunter and VAPT Specialist with 5+ years of hands-on offensive security experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <title>Ashiqur Emon</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <style>
+    :root {
+      --bg:         #0a0e14;
+      --bg2:        #0f1520;
+      --bg3:        #141d2b;
+      --border:     rgba(255,255,255,0.07);
+      --border2:    rgba(255,255,255,0.12);
+      --white:      #ffffff;
+      --off:        #c8d4e0;
+      --muted:      #7a90a8;
+      --dim:        #4a5f76;
+      --green:      #00e5a0;
+      --green-dim:  #00b87d;
+      --blue:       #3d9eff;
+      --blue-dim:   #1a6fc4;
+      --max-w:      860px;
+      --radius:     12px;
+      --radius-sm:  8px;
+    }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Epilogue', sans-serif;
+      background: var(--bg);
+      color: var(--off);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    /* subtle noise */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10,14,20,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: calc(var(--max-w) + 80px);
+      margin: 0 auto; padding: 0 2rem;
+      height: 58px; display: flex;
+      align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .nav-brand {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1rem; color: var(--white); letter-spacing: -0.02em; white-space: nowrap;
+    }
+    .nav-brand span { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-links a {
+      padding: 0.35rem 0.8rem; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 500; color: var(--muted);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-pill {
+      margin-left: 0.5rem; padding: 0.3rem 0.9rem;
+      border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      background: var(--green); color: #000; white-space: nowrap;
+    }
+    .nav-toggle {
+      display: none; background: none; border: 1px solid var(--border2);
+      border-radius: 7px; padding: 0.4rem 0.55rem;
+      color: var(--off); cursor: pointer; font-size: 1rem;
+    }
+    .mobile-nav {
+      display: none; flex-direction: column;
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem 1rem; gap: 0.25rem;
+    }
+    .mobile-nav a {
+      padding: 0.55rem 0.75rem; border-radius: 7px;
+      font-size: 0.9rem; font-weight: 500; color: var(--muted);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .mobile-nav.open { display: flex; }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* ── PAGE SHELL ──────────────────────────────────────── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: calc(var(--max-w) + 80px);
+      margin: 0 auto; padding: 0 2rem 5rem;
+    }
 
-  <!-- =======================================================
-  * Template Name: iPortfolio - v3.7.0
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      padding: 5rem 0 3.5rem; text-align: center; position: relative;
+    }
+    .hero::after {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center top, rgba(0,229,160,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 1rem; border-radius: 999px;
+      border: 1px solid rgba(0,229,160,0.3); background: rgba(0,229,160,0.07);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+      color: var(--green); letter-spacing: 0.06em; margin-bottom: 1.75rem;
+    }
+    .hero-tag::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.08; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--green) 0%, var(--blue) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted); font-weight: 400;
+      margin-bottom: 2rem; max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.25rem;
+    }
+    .stat {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 1rem 1.75rem; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--bg2); min-width: 120px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .stat:hover { border-color: var(--border2); transform: translateY(-3px); }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.9rem;
+      color: var(--white); line-height: 1; margin-bottom: 0.25rem;
+    }
+    .stat-num span { color: var(--green); }
+    .stat-lbl { font-size: 0.78rem; color: var(--muted); font-weight: 500; text-align: center; }
+    .hero-badges {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .badge {
+      padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.78rem; font-weight: 500;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .badge:hover { border-color: var(--border2); color: var(--off); }
+    .badge.g { border-color: rgba(0,229,160,0.3); color: var(--green); background: rgba(0,229,160,0.06); }
+    .badge.b { border-color: rgba(61,158,255,0.3); color: var(--blue);  background: rgba(61,158,255,0.06); }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section { margin-bottom: 4rem; }
+    .sec-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); white-space: nowrap;
+    }
+    .sec-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border2), transparent); }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    .about-text {
+      font-size: 1.08rem; line-height: 1.85; color: var(--off);
+      max-width: 700px; margin: 0 auto; text-align: center;
+    }
+    .about-text strong { color: var(--white); font-weight: 600; }
+
+    /* ── CARDS ───────────────────────────────────────────── */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem 2rem; margin-bottom: 1.25rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1rem; margin-bottom: 0.85rem; flex-wrap: wrap;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700;
+      color: var(--white); letter-spacing: -0.01em;
+    }
+    .card-meta { font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
+    .date-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      padding: 0.25rem 0.75rem; border-radius: 999px;
+      border: 1px solid var(--border2); color: var(--muted); white-space: nowrap; flex-shrink: 0;
+    }
+    .card-body { font-size: 0.95rem; color: var(--off); line-height: 1.75; }
+    .card-body li { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.5rem; }
+    .card-body li::before {
+      content: '▹'; color: var(--green); flex-shrink: 0; font-size: 0.85rem; margin-top: 0.18em;
+    }
+    .card-body strong { color: var(--white); font-weight: 600; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.1rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.3rem 0.8rem; border-radius: 7px; font-size: 0.8rem; font-weight: 500;
+      background: var(--bg3); border: 1px solid var(--border); color: var(--muted);
+    }
+    .chip b { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+
+    /* ── SKILLS ──────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .skill-block {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1.75rem; transition: border-color 0.25s;
+    }
+    .skill-block:hover { border-color: var(--border2); }
+    .skill-block-title {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+    }
+    .tag-wrap { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.82rem;
+      background: var(--bg3); border: 1px solid var(--border); color: var(--off);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag:hover { border-color: var(--green-dim); color: var(--white); }
+
+    /* ── LABS ────────────────────────────────────────────── */
+    .labs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1.5rem; }
+    .lab-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem 1.25rem 1.5rem; text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .lab-box:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-3px); }
+    .lab-num {
+      font-family: 'Syne', sans-serif; font-size: 2.75rem; font-weight: 800;
+      color: var(--white); line-height: 1; margin-bottom: 0.35rem;
+    }
+    .lab-num em { font-style: normal; color: var(--green); }
+    .lab-name { font-size: 0.9rem; font-weight: 600; color: var(--off); margin-bottom: 0.2rem; }
+    .lab-src  { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────── */
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .cert-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .cert-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .cert-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--bg3) 0%, #1c2a3a 100%);
+      border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      font-weight: 500; color: var(--green); text-align: center; line-height: 1.2;
+    }
+    .cert-name { font-size: 0.92rem; font-weight: 600; color: var(--white); margin-bottom: 0.15rem; line-height: 1.35; }
+    .cert-issuer { font-size: 0.78rem; color: var(--muted); }
+    .cert-link {
+      display: inline-block; margin-top: 0.4rem; font-size: 0.75rem;
+      font-weight: 600; color: var(--blue); transition: color 0.2s;
+    }
+    .cert-link:hover { color: var(--green); }
+
+    /* ── SOCIAL ──────────────────────────────────────────── */
+    .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+    .social-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem;
+      display: flex; align-items: center; gap: 0.85rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .social-card:hover { border-color: rgba(61,158,255,0.3); transform: translateY(-2px); }
+    .social-icon {
+      width: 38px; height: 38px; border-radius: var(--radius-sm);
+      background: var(--bg3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--blue);
+    }
+    .social-label { font-size: 0.72rem; color: var(--muted); }
+    .social-handle { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    .contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.35rem 1.5rem;
+      display: flex; align-items: center; gap: 0.9rem; transition: border-color 0.25s;
+    }
+    .contact-box:hover { border-color: var(--border2); }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: var(--radius-sm);
+      background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--green);
+    }
+    .contact-lbl { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.15rem; }
+    .contact-val { font-size: 0.9rem; font-weight: 600; color: var(--white); word-break: break-all; }
+    .contact-val a { color: var(--blue); }
+    .contact-val a:hover { color: var(--green); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .footer {
+      margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-copy { font-size: 0.82rem; color: var(--dim); }
+    .footer-rank {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--green);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Scroll fade ─────────────────────────────────────── */
+    .fade { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade.in { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .nav-links, .nav-pill { display: none; }
+      .nav-toggle { display: block; }
+      .skills-grid, .cert-grid { grid-template-columns: 1fr; }
+      .labs-row, .social-grid, .contact-row { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 3rem 0 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .labs-row, .social-grid, .contact-row { grid-template-columns: 1fr; }
+      .page { padding: 0 1.25rem 4rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/emon/Profile.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Ashiqur Emon</a></h1>
-        <div  class="social-links mt-3 text-center">
-          <a style="box-shadow: 0px 0px 6px 0px;" id="github" href="https://github.com/AshiqurEmon" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a style="box-shadow: 0px 0px 6px 0px;" href="https://twitter.com/Ashiqur_Emon78" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a style="box-shadow: 0px 0px 6px 0px;" id="linkedin" href="https://www.linkedin.com/in/ashiqur-emon-4715a2174/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a style="box-shadow: 0px 0px 6px 0px;" id="github" href="https://hackerone.com/ashiquremon63?type=user" target="_blank" class="github"><i class="bx"></i><b>h1</b></a>
-          <!--<a id="linkedin" href="https://www.facebook.com/profile.php?id=100012126737514" class="facebook"><i class="bx bxl-facebook"></i></a>-->
-          
-        </div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="nav-brand">Ashiqur<span>.</span>ARE</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#labs">Labs</a>
+        <a href="#certifications">Certs</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:ashiq.r.emon@gmail.com" class="nav-pill">Hire Me</a>
       </div>
-
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#certificates" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Certifications</span></a></li>
-          <!--<li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
     </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Md Ashiqur Rahman Emon</h1>
-      <p>I'm <span class="typed" data-typed-items="Ethical Hacker,Computer Engineer,AppSec Practitionar, Web App Pentester,API Penetration Testing, Network Penetration Tester,Bug Bounty Hunter, CTF Player,Cyber Security Enthusiast,Muslim"></span></p>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#labs">Labs</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
     </div>
-  </section><!-- End Hero -->
+  </nav>
 
-  <main style="
-  box-shadow: 0px 0px 10px 0px;" id="main">
+  <div class="page">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div  class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
-          <p>Hello, I'm Md Ashiqur Rahman Emon, a Professional Ethical Hacker,Computer Engineer and Appsec Practitionar. I do web app penetration testing,API Penetration Testing, Network Penetration Testing, Bug Bounty Hunting. In my free time, I play CTF in Tryhackme (Capture The Flag) and i do lab exercises in Pentesterlab to sharpen my cyber security 
-            s and study the methodologies of Elite Hackers. I'm a practicing Muslim and love to read my religious books like Quran and Sahih Hadiths.</p>
-        </div>
-
-        <div class="row">
-          
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3 id="edit">Ethical hacker, Pentester &amp; Bug bounty hunter.</h3>
-            <p class="fst-italic">
-              
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>BirthYear:</strong> <span> 1998</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>Website:</strong> <a href="https://dev-ashiquremon.pantheonsite.io/" style="color: rgb(131, 33, 33);" target="_blank">https://dev-ashiquremon.pantheonsite.io/</a></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+8801641797864</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Brahmanbaria, Bangladesh</span></li>
-                </ul>
-              </div>
-              
-              <div class="col-lg-6">
-                <ul>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>Program:</strong> <span>BSc in Computer Science & Engineering</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>ashiq.r.emon@gmail.com</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3 id="edit">Hobbies</h3>
-            <p class="fst-italic">
-              
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i>Reading Infosec Write-Ups</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i>Physical Exercise and fitness related Knowledge</span></li>
-                  <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i>Religious Books</span></li>
-         <li><i style="color: rgb(114, 17, 17);" class="bi bi-chevron-right"></i>Public Speaking</span></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-tag">Available for VAPT Engagements</div>
+      <h1>Md Ashiqur<br>Rahman <em>Emon</em></h1>
+      <p class="hero-sub">VAPT Specialist · Ethical Hacker · Offensive Security Researcher · Bug Bounty Hunter</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">#<span>415</span></span><span class="stat-lbl">Intigriti Global<br>Ranking</span></div>
+        <div class="stat"><span class="stat-num">100<span>+</span></span><span class="stat-lbl">Organisations<br>Disclosed To</span></div>
+        <div class="stat"><span class="stat-num">5<span>+</span></span><span class="stat-lbl">Years Offensive<br>Security</span></div>
+        <div class="stat"><span class="stat-num">Top<span>1%</span></span><span class="stat-lbl">TryHackMe<br>Platform</span></div>
       </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Facts Section =======
-    <section id="facts" class="facts">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p></p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="11" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Worker</strong></p>
-            </div>
-          </div>
-
-        </div>
-
+      <div class="hero-badges">
+        <span class="badge g">🏆 Intigriti Hall of Fame</span>
+        <span class="badge b">CAP Certified</span>
+        <span class="badge b">CNSP Certified</span>
+        <span class="badge b">CRTOM Certified</span>
+        <span class="badge">BGD e-GOV Cyberdrill — 4th Place</span>
+        <span class="badge">PortSwigger 190+ Labs</span>
       </div>
-    </section><!-- End Facts Section -->
+    </header>
 
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p></p>
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">Web pentesting <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Network pentesting <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Cloud pentesting <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            
-              <div class="progress">
-              <span class="skill">Amazonaws,Digitalocean,Linode etc<i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            
-            <div class="progress">
-              <span class="skill">API pentesting <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Linux<i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Python <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Bash scripting <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">PHP <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Javascript <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Communication,mentorship,leadership <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">WordPress.Adobe Experience Manager(AEM),Joomla etc./CMS <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">HTML,CSS,Bootstrap <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <!--<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">-->
-
-
-            
-
-          </div>
-
-        </div>
-
+    <!-- ABOUT -->
+    <section id="about" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 01 — About</span>
+        <span class="sec-line"></span>
       </div>
-    </section><!-- End Skills Section -->
+      <p class="about-text">
+        Ethical hacker and VAPT specialist with <strong>5+ years</strong> of hands-on offensive security experience. Ranked <strong>Top 500 worldwide on Intigriti</strong>, with extensive lab validation across PortSwigger (190+ Labs) and TryHackMe (150+ Rooms). Expert in OWASP Top 10 (Web/API), SecOps, Application Security, PCI-DSS, and ISO 27001. Passionate about AI-assisted security research, cloud hacking, and automated reconnaissance.
+      </p>
+    </section>
 
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Sumary</h3>
-            <div class="resume-item pb-0">
-              <h4>Md Ashiqur Rahman Emon</h4>
-              <p><em>I'm an Ethical hacker with near 4 year of experience, i'm a Certified AppSec Practitionar(CAP), Security instructor, Security researcher, Pentester, Bug bounty hunter, Programmer, CTF (Capture The Flag) Player</em></p>
-              <ul>
-                <li>Brahmanbaria</li>
-                <li>+8801641797864</li>
-                <li>ashiq.r.emon@gmail.com</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Degree: B.Sc. in Computer Science &amp; Engineering(Graduated)</h4>
-              <h5>2018-22</h5>
-              <p><em>Leading University, Sylhet</em></p>
-                        </div>
-            <h3 class="resume-title">Soft Skills</h3>
-            <div class="resume-item">
-              <h4>Softskills</h4>
-              <li> Interpersonal (people) skills</li>
-                <li>communication skills</li>
-                <li>Listening skills</li>
-              <li>Time management</li>
-              <li>Leadership</li>
-                        </div>
-
-
-
-              
-
-              
-
-          </div>
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item pb-0">
-              <h4>Bug Bounty Hunter</h4>
-              <h5>2020-Still Going</h5>
-              
-              <ul>
-                <li>Got many rewards and several Hall of fames from Different companies for finding bugs in their domains</li>
-                <li>Tested domains of several companies like <i><b>John Deer,Consensys,Razer,Superleage,Assurant,Belvo,Tuple,Street Context,Moderntreasury,Knowyourteam,Revenuecat</b></i> etc.</li>
-                <li>Appreciated by the security teams of several companies for reporting bugs in their systems</li>
-                <li>Ethical hacking trainer</li>
-              </ul>
-              </div>
-              <div class="resume-item">
-              <h4>Trainer</h4>
-              <ul>
-                <li>Ethical hacking trainer</li>
-                <p><em>i Had trained a batch of 20+ people about Bug Bounty Hunting and its different Methodologies for 4+ months</em></p>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Academic Experience</h3>
-            <div class="resume-item">
-              <h4>Project And Thesis</h4>
-              <p><em></em></p>
-              <ul>
-                <li><i><b>3rd Year Project on android application-</i></b> Medicine care</li>
-                <li><i><b>4th year Thesis -</i></b> Offensive approach in web application pentesting with TOR and proxychains</li>
-                
-              </ul>
-                        </div>
-              
-              
-            </div>
-          
-        </div>
-
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Portfolio Section ======= 
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 02 — Experience</span>
+        <span class="sec-line"></span>
       </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Services Section ======= 
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-title">Independent Offensive Security Researcher</p>
+            <p class="card-meta">Bug Bounty Hunting &amp; Penetration Testing · Global Platforms</p>
+          </div>
+          <span class="date-tag">2020 – Present</span>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-briefcase"></i></div>
-            <h4 class="title"><a href="">Ashiqur Emon</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-bar-chart"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bi bi-binoculars"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+        <div class="card-body">
+          <ul>
+            <li>Ranked <strong>#415 globally</strong> on Intigriti with multiple Hall of Fame recognitions.</li>
+            <li>Disclosed exceptional / critical vulnerabilities across <strong>100+ organisations</strong> — including Elastic, John Deere, Razer, Xsolla, Telenet, Signicat, and Red Bull.</li>
+            <li>Engineered personal automation scripts for asset discovery, reconnaissance, fuzzing, and exploit automation using Python and Bash.</li>
+            <li>Extensive experience through company self-hosted bug bounty programs, advancing exposure to emerging vulnerabilities and OSINT techniques beyond standard OWASP Top 10.</li>
+            <li>Leveraged LLMs (Claude, ChatGPT, Grok, DeepSeek) for automated scanning, exploit development, and secure code review.</li>
+          </ul>
+          <div class="chip-row">
+            <span class="chip"><b>#415</b> Intigriti Rank</span>
+            <span class="chip"><b>100+</b> Orgs Disclosed</span>
+            <span class="chip"><b>5+</b> Yrs Active</span>
+            <span class="chip"><b>HoF</b> Multiple Recognitions</span>
           </div>
         </div>
-
       </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section id="certificates" class="testimonials section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Certifications in cybersecurity</h2>
-          <p>I have achieved several certifications in cybersecurity.</p>
-          <br>
-          
-          <ui>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="">Certified AppSec Practitionar (The SecOps Group)</a></li><br>
-            <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="">Certified Network Security Practitionar (The SecOps Group)</a></li><br>
-            <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://www.credly.com/badges/fb7e8d5a-7c54-40c0-98e7-08675e539285/public_url">API Penetration Testing (APIsec University)</a></li><br>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://codered.eccouncil.org/certificate/33d5052a-05bb-43f2-ad2d-e5691bb40953">Ethical Hacking Essentials (EC Council)</a></li><br>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://app.cybrary.it/courses/api/certificate/CC-f70edf1e-4a11-4b62-8d6c-beb86b0b567a/view">Offensive Penetration Testing (Cybrary)</a></li><br>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://app.cybrary.it/courses/api/certificate/CC-48d30851-86fe-43fd-82f6-cff708eddae0/view">Penetration Testing And Ethical Hacking (Cybrary)</a></li><br>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/V9ACLLT3V4PL">Cyber Security and Attack Vector (Courseera)</a></li><br>
-          <li><a id="certificate" style="color: rgb(131, 33, 33);" target="_blank" href="https://ondemand.icsiglobal.com/certificates/2g8eghgrmc">Cyber Security Essentials (International Cyber Security Institute)</a></li>
-        </ui>
-      
-        </div>
-
-        
-
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-title">Security Instructor &amp; Mentor</p>
+            <p class="card-meta">Ethical Hacking Education</p>
           </div>
-          <div class="swiper-pagination"></div>
         </div>
-
+        <div class="card-body">
+          <ul>
+            <li>Designed and delivered a <strong>4-month comprehensive Ethical Hacking course</strong> for 20+ students.</li>
+            <li>Mentored students on building security automation tools and writing professional VAPT reports.</li>
+          </ul>
+        </div>
       </div>
-    </section><!-- End Testimonials Section -->
+    </section>
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-         <p>Hi There! If you want me to pentest your domains, please reach out to me on LinkedIn. </p>
-        </div>
-
-        <div class="row" data-aos="fade-in">
-
-          <div style="border-radius: 10px;
-          box-shadow: 0px 0px 10px 0px;background-color:white" class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Brahmanbaria</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>ashiq.r.emon@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+8801641797864</p>
-              </div>
-
-              <iframe src="https://maps.google.com/maps?q=barthkhana&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
-            </div>
-
+    <!-- SKILLS -->
+    <section id="skills" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 03 — Technical Skills</span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-block">
+          <p class="skill-block-title">Offensive Security</p>
+          <div class="tag-wrap">
+            <span class="tag">Web Pentesting</span>
+            <span class="tag">API Pentesting (REST, GraphQL)</span>
+            <span class="tag">Network Pentesting</span>
+            <span class="tag">Cloud Security (AWS, GCP, DO, Linode)</span>
+            <span class="tag">IoT Hacking</span>
+            <span class="tag">AI Hacking</span>
+            <span class="tag">Social Engineering</span>
+            <span class="tag">OSINT</span>
           </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <header id="heade">
-              <div class="profil">
-                <div class="social-link">
-                        <a style="box-shadow: 0px 0px 6px 0px;" id="lnkin" href="https://www.linkedin.com/in/ashiqur-emon-4715a2174/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a></div></div>
-                      </header>
-          </div>
-
         </div>
-
+        <div class="skill-block">
+          <p class="skill-block-title">Methodologies &amp; Compliance</p>
+          <div class="tag-wrap">
+            <span class="tag">VAPT</span>
+            <span class="tag">OWASP Top 10 (Web/API)</span>
+            <span class="tag">Threat Modeling</span>
+            <span class="tag">PCI-DSS</span>
+            <span class="tag">ISO 27001</span>
+            <span class="tag">SecOps</span>
+            <span class="tag">CIA Triad</span>
+            <span class="tag">TCP/IP · OSI</span>
+            <span class="tag">Cryptography</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <p class="skill-block-title">Security Tools</p>
+          <div class="tag-wrap">
+            <span class="tag">Burp Suite</span>
+            <span class="tag">Nmap</span>
+            <span class="tag">Naabu</span>
+            <span class="tag">Rustscan</span>
+            <span class="tag">Hydra</span>
+            <span class="tag">Dirsearch</span>
+            <span class="tag">FFUF</span>
+            <span class="tag">SQLmap</span>
+            <span class="tag">Nuclei</span>
+            <span class="tag">Httpx</span>
+            <span class="tag">Acunetix</span>
+            <span class="tag">OWASP ZAP</span>
+            <span class="tag">Postman</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <p class="skill-block-title">Programming &amp; Automation</p>
+          <div class="tag-wrap">
+            <span class="tag">Python</span>
+            <span class="tag">Bash</span>
+            <span class="tag">PHP</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">JSON / YAML</span>
+            <span class="tag">LLM-assisted Recon</span>
+            <span class="tag">AI Exploit Dev</span>
+            <span class="tag">Secure Code Review </span>
+          </div>
+        </div>
       </div>
-    </section><!-- End Contact Section -->
+    </section>
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-<footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        <strong><span></span></strong>
+    <!-- LABS -->
+    <section id="labs" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 04 — Labs &amp; Research</span>
+        <span class="sec-line"></span>
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-
-s-template/ -->
-        <i style="box-shadow: 0px 0px 5px 0px;border-radius: 50px;">Ashiqur Emon</i>
+      <div class="labs-row">
+        <div class="lab-box">
+          <div class="lab-num">190<em>+</em></div>
+          <p class="lab-name">Labs Completed</p>
+          <p class="lab-src">PortSwigger Web Security Academy</p>
+        </div>
+        <div class="lab-box">
+          <div class="lab-num">150<em>+</em></div>
+          <p class="lab-name">Rooms Completed</p>
+          <p class="lab-src">TryHackMe — Top 1%</p>
+        </div>
+        <div class="lab-box">
+          <div class="lab-num">4<em>th</em></div>
+          <p class="lab-name">National Cyberdrill</p>
+          <p class="lab-src">BGD e-GOV CIRT Bangladesh</p>
+        </div>
       </div>
-    </div>
-  </footer><!-- End  Footer -->
+      <div class="card">
+        <div class="card-header"><p class="card-title">Key Projects &amp; Research</p></div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Infosec Publication (Medium):</strong> Technical blogs on exploitation techniques and offensive security methodologies.</li>
+            <li><strong>Academic Thesis:</strong> Offensive Approach in Web Application Pentesting with TOR and Proxychains (CSE 4th-year project).</li>
+            <li><strong>Android Development:</strong> "Medicine Care" Android application (CSE 3rd-year project).</li>
+            <li><strong>Security Automation:</strong> Custom reconnaissance, fuzzing, and exploit automation tooling in Python and Bash.</li>
+            <li><strong>PentesterLab:</strong> Advanced manual exploitation exercises beyond automated tooling.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 05 — Certifications</span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-icon">CRTOM</div><div><p class="cert-name">Certified Red Team Operations Management</p><p class="cert-issuer">CRTOM</p></div></div>
+        <div class="cert-card"><div class="cert-icon">CAP</div><div><p class="cert-name">Certified AppSec Practitioner</p><p class="cert-issuer">The SecOps Group</p></div></div>
+        <div class="cert-card"><div class="cert-icon">CNSP</div><div><p class="cert-name">Certified Network Security Practitioner</p><p class="cert-issuer">The SecOps Group</p></div></div>
+        <div class="cert-card"><div class="cert-icon">API</div><div><p class="cert-name">API Penetration Tester</p><p class="cert-issuer">APIsec University</p><a class="cert-link" href="https://www.credly.com/badges/fb7e8d5a-7c54-40c0-98e7-08675e539285/public_url" target="_blank" rel="noopener">View credential ↗</a></div></div>
+        <div class="cert-card"><div class="cert-icon">OPT</div><div><p class="cert-name">Offensive Penetration Testing</p><p class="cert-issuer">Cybrary</p><a class="cert-link" href="https://app.cybrary.it/courses/api/certificate/CC-f70edf1e-4a11-4b62-8d6c-beb86b0b567a/view" target="_blank" rel="noopener">View credential ↗</a></div></div>
+        <div class="cert-card"><div class="cert-icon">CSA</div><div><p class="cert-name">Cyber Security &amp; Attack Vector</p><p class="cert-issuer">Coursera</p><a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/V9ACLLT3V4PL" target="_blank" rel="noopener">View credential ↗</a></div></div>
+        <div class="cert-card"><div class="cert-icon">EHE</div><div><p class="cert-name">Ethical Hacking Essentials</p><p class="cert-issuer">EC-Council</p><a class="cert-link" href="https://codered.eccouncil.org/certificate/33d5052a-05bb-43f2-ad2d-e5691bb40953" target="_blank" rel="noopener">View credential ↗</a></div></div>
+        <div class="cert-card"><div class="cert-icon">CSE</div><div><p class="cert-name">Cyber Security Essentials</p><p class="cert-issuer">International Cyber Security Institute</p><a class="cert-link" href="https://ondemand.icsiglobal.com/certificates/2g8eghgrmc" target="_blank" rel="noopener">View credential ↗</a></div></div>
+      </div>
+    </section>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- EDUCATION -->
+    <section id="education" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 06 — Education</span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-title">B.Sc. in Computer Science &amp; Engineering</p>
+            <p class="card-meta">Leading University, Sylhet, Bangladesh</p>
+          </div>
+          <span class="date-tag">2018 – 2022</span>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Thesis: Offensive Approach in Web Application Pentesting with TOR &amp; Proxychains.</li>
+            <li>Developed "Medicine Care" Android application as third-year project.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- CONTACT -->
+    <section id="contact" class="section fade">
+      <div class="sec-head">
+        <span class="sec-label">// 07 — Contact</span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="contact-row">
+        <div class="contact-box">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><p class="contact-lbl">Email</p><p class="contact-val"><a href="mailto:ashiq.r.emon@gmail.com">ashiq.r.emon@gmail.com</a></p></div>
+        </div>
+        <div class="contact-box">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 10.7 19.79 19.79 0 0 1 1.95 2.18 2 2 0 0 1 3.92 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 14.92z"/></svg></div>
+          <div><p class="contact-lbl">Phone</p><p class="contact-val">+880 1641 797864</p></div>
+        </div>
+        <div class="contact-box">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><p class="contact-lbl">Location</p><p class="contact-val">Brahmanbaria, Bangladesh</p></div>
+        </div>
+      </div>
+      <div class="social-grid">
+        <a href="https://github.com/AshiqurEmon" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
+          <div><p class="social-label">GitHub</p><p class="social-handle">AshiqurEmon</p></div>
+        </a>
+        <a href="https://www.linkedin.com/in/ashiquremon/" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div><p class="social-label">LinkedIn</p><p class="social-handle">ashiqur-emon</p></div>
+        </a>
+        <a href="https://twitter.com/Ashiqur_Emon78" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+          <div><p class="social-label">X / Twitter</p><p class="social-handle">@Ashiqur_Emon78</p></div>
+        </a>
+        <a href="https://hackerone.com/ashiquremon63?type=user" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2.8L2 12l5 9.2h10L22 12 17 2.8H7zm5 13.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></div>
+          <div><p class="social-label">HackerOne</p><p class="social-handle">ashiquremon63</p></div>
+        </a>
+        <a href="https://app.intigriti.com/profile/ashiquremon" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+          <div><p class="social-label">Intigriti</p><p class="social-handle">#TOP500 Worldwide</p></div>
+        </a>
+        <a href="https://medium.com/@ashiq.r.emon" target="_blank" rel="noopener" class="social-card">
+          <div class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg></div>
+          <div><p class="social-label">Medium</p><p class="social-handle">Infosec Write-ups</p></div>
+        </a>
+      </div>
+    </section>
 
+    <footer class="footer">
+      <p class="footer-copy">© 2025 Md Ashiqur Rahman Emon · B.Baria, Bangladesh</p>
+      <span class="footer-rank">⬡ Intigriti Top 500 Worldwide</span>
+    </footer>
+
+  </div>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    const fades = document.querySelectorAll('.fade');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.07 });
+    fades.forEach(el => io.observe(el));
+
+    const secs = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sio = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAs.forEach(a => a.classList.remove('active'));
+          const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    secs.forEach(s => sio.observe(s));
+  </script>
 </body>
-
 </html>
